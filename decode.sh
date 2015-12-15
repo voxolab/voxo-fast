@@ -36,7 +36,7 @@ nj=1
 
 echo "PHI: $phi"
 
-./bin/decode_innetQuad.sh --nnet $models/model/final.nnet --srcdir $models/model/ --phi $phi --rescore $models/3g --num_threads 8 --use_gpu no  --skip_scoring true --nj $nj --cmd "$decode_cmd" --cmd2 "$rescore_cmd"  $models/graph/ ${name} ${name}/${name}.o.1 || exit 1
+./bin/decode_innetQuad.sh --nnet $models/model/final.nnet --srcdir $models/model/ --phi $phi --rescore $models/3g --num_threads 8 --use_gpu yes  --skip_scoring true --nj $nj --cmd "$decode_cmd" --cmd2 "$rescore_cmd"  $models/graph/ ${name} ${name}/${name}.o.1 || exit 1
 date
 duration=$SECONDS
 echo "Computed in $(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
