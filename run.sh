@@ -16,6 +16,10 @@ filename=$(basename "$audio")
 extension="${filename##*.}"
 show="${filename%.*}"
 
+# Get param values or default values
+gpu=${2:-yes}
+threads=${3:-8}
+
 # Move to the dir containing this file
 # Kaldi scripts are often expecting the path 
 # to be relative
@@ -44,7 +48,7 @@ sox $wdir/audio/$show.wav -r 16000 $wdir/audio/$show.sph
 cat $wdir/seg/$show.g.seg | ./bin/51meignier2ctm.perl | ./bin/03kaldi.perl $wdir/decode $wdir/audio/$show.sph $KALDI_ROOT/tools/sph2pipe_v2.5/sph2pipe 16000
 
 # Start decoding
-./bin/decode.sh $wdir/decode
+./bin/decode.sh $wdir/decode $gpu $threads
 
 # If the ctm has been produced (everything is ok)
 # sort it and convert it to utf-8
