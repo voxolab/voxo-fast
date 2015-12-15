@@ -43,7 +43,7 @@ while (<STDIN>) {
     my $utt=sprintf  "%s#%s#%s:%s#" ,$res[0],$res[4],$res[2],$res[3];
     my $spk=sprintf "%s#%s",$res[0],$res[4];
     push @{$spk{$spk}},$utt;
-    printf WAV "%s %s -c 1 -f wav -p  %s/%s.sph|\n",$res[0],$sph2pipe,$rep,$res[0] unless (defined($vuWav{$res[0]}));
+    printf WAV "%s %s -c 1 -f wav -p  $sphFile|\n",$res[0],$sph2pipe,$rep,$res[0] unless (defined($vuWav{$res[0]}));
     $vuWav{$res[0]}=1;
 }
 foreach my $spk (sort keys %spk) {

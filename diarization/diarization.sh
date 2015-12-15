@@ -18,7 +18,7 @@ phase1=$4
 phase2=$5
 inputFormat=$6
 
-wdir=$bdir/$show
+wdir=$bdir
 mkdir -p $wdir &> /dev/null
 
 logfile=$wdir/seg.log
