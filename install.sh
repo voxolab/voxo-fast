@@ -2,12 +2,14 @@
 
 source path.sh
 
+# Check directories required by Kaldi
 if [ ! -d $KALDI_ROOT ]; then
     echo "It seems that your KALDI_ROOT dir doesn't exist. The current value is \"$KALDI_ROOT\"."
     echo "Please be sure to edit path.sh with the correct values."
     exit 1
 fi
 
+# Create required symlinks
 utils_link="utils"
 steps_link="steps"
 local_link="local"
@@ -18,6 +20,7 @@ ln -s $KALDI_ROOT/egs/swbd/s5b/utils $utils_link
 ln -s $KALDI_ROOT/egs/swbd/s5b/steps $steps_link
 ln -s $KALDI_ROOT/egs/swbd/s5b/local $local_link
 
+# Check Kaldi models and files
 if [ ! -d $KALDI_MODELS ]; then
     echo "It seems that your KALDI_MODELS dir doesn't exist. The current value is \"$KALDI_MODELS\"."
     echo "Please be sure to edit path.sh with the correct values."
@@ -43,3 +46,6 @@ if [ ! -e $KALDI_MODELS/3g ] || [ ! -e $KALDI_MODELS/3g/G.fst.phi.sort ]; then
     echo "This dir should contain a \"G.fst.phi.sort\" file."
     exit 1
 fi
+
+# Everything is ok, return 0
+exit 0
