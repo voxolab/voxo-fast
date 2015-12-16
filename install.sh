@@ -24,21 +24,21 @@ if [ ! -d $KALDI_MODELS ]; then
     exit 1
 fi
 
-if [ ! -e $KALDI_MODELS/graph ]; then
+if [ ! -e $KALDI_MODELS/graph ] || [ ! -e $KALDI_MODELS/graph/HCLG.fst.map ] ; then
     echo "You need a \"graph\" directory (or symlink) in your $KALDI_MODELS dir."
-    echo "This dir should contain a \"HCLG.fst\" file (mapped with openfst)."
+    echo "This dir should contain a \"HCLG.fst.map\" file (mapped with openfst)."
     exit 1
 fi
 
 
-if [ ! -e $KALDI_MODELS/model ]; then
+if [ ! -e $KALDI_MODELS/model ] || [ ! -e $KALDI_MODELS/model/final.nnet ]; then
     echo "You need a \"model\" directory (or symlink) in your $KALDI_MODELS dir."
     echo "This dir should contain a \"final.nnet\" file."
     exit 1
 fi
 
 
-if [ ! -e $KALDI_MODELS/3g ]; then
+if [ ! -e $KALDI_MODELS/3g ] || [ ! -e $KALDI_MODELS/3g/G.fst.phi.sort ]; then
     echo "You need a \"3g\" directory (or symlink) in your $KALDI_MODELS dir."
     echo "This dir should contain a \"G.fst.phi.sort\" file."
     exit 1
