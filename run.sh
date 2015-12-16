@@ -38,7 +38,14 @@ mkdir -p $wdir/decode &> /dev/null
 mkdir -p $wdir/audio &> /dev/null
 
 # Convert to wav, then to sphere format
-avconv -i $audio -y -vn -acodec pcm_s16le -ac 1 $wdir/audio/$show.wav
+# Ubuntu 14 has avconv instead of ffmpeg...
+if hash avconv 2>/dev/null; then
+  conv_bin=avconv
+else
+  conv_bin=ffmpeg
+fi
+
+$conv_bin -i $audio -y -vn -acodec pcm_s16le -ac 1 $wdir/audio/$show.wav
 sox $wdir/audio/$show.wav -r 16000 $wdir/audio/$show.sph
 
 # Diarization (segmentation/classification)
