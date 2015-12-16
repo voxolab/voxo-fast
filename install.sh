@@ -29,7 +29,7 @@ fi
 
 if [ ! -e $KALDI_MODELS/graph ] || [ ! -e $KALDI_MODELS/graph/HCLG.fst.map ] ; then
     echo "You need a \"graph\" directory (or symlink) in your $KALDI_MODELS dir."
-    echo "This dir should contain a \"HCLG.fst.map\" file (mapped with openfst)."
+    echo "This dir should contain a \"HCLG.fst.map\" file (mapped with openfst cf. http://www.lvcsr.com/openfst-133-mapped-files.html )."
     exit 1
 fi
 
