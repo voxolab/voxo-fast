@@ -13,7 +13,7 @@ ivector=200
 nj=1
 mfccdir=${name}/mfcci
 vaddir=/${name}/mfcci
-models="/home/vjousse/asr/modeles"
+models=$KALDI_MODELS
 date
 
 nji=1
