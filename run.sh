@@ -17,8 +17,9 @@ extension="${filename##*.}"
 show="${filename%.*}"
 
 # Get param values or default values
-gpu=${2:-yes}
-threads=${3:-8}
+output_dir=${2:-$DIR/output/}
+gpu=${3:-yes}
+threads=${4-8}
 
 # Move to the dir containing this file
 # Kaldi scripts are often expecting the path 
@@ -29,7 +30,6 @@ cd $DIR
 source path.sh
 
 # Create output dir
-output_dir="$DIR/output/"
 wdir=$output_dir$show
 
 mkdir -p $wdir &> /dev/null
