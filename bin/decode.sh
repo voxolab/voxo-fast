@@ -2,6 +2,7 @@
 SECONDS=0
 
 source cmd.sh
+source path.sh
 
 export LC_ALL=C
 
