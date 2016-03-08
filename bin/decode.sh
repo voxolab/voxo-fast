@@ -13,12 +13,12 @@ threads=${3:-8}
 lm=${4:-3g}
 graph=${5:-graph}
 model=${6:-model}
+models=${7:-$KALDI_MODELS}
 
 ivector=200
 nj=1
 mfccdir=${name}/mfcci
 vaddir=/${name}/mfcci
-models=$KALDI_MODELS
 date
 
 nji=1

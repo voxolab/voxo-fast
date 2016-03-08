@@ -23,6 +23,7 @@ threads=${4:-8}
 lm=${5:-3g}
 graph=${6:-graph}
 model=${7:-model}
+models=$8
 
 # Move to the dir containing this file
 # Kaldi scripts are often expecting the path 
@@ -58,7 +59,7 @@ sox $wdir/audio/$show.wav -r 16000 $wdir/audio/$show.sph
 cat $wdir/seg/$show.g.seg | ./bin/51meignier2ctm.perl | ./bin/03kaldi.perl $wdir/decode $wdir/audio/$show.sph $KALDI_ROOT/tools/sph2pipe_v2.5/sph2pipe 16000
 
 # Start decoding
-./bin/decode.sh $wdir/decode $gpu $threads $lm $graph $model
+./bin/decode.sh $wdir/decode $gpu $threads $lm $graph $model $models
 
 # If the ctm has been produced (everything is ok)
 # sort it and convert it to utf-8
