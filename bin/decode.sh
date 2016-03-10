@@ -38,7 +38,7 @@ if [ $taille == 0 ]; then
 fi
 
 
-phi=`grep '#0' $models/graph/words.txt | cut -d ' ' -f 2`
+phi=`grep '#0' $models/$graph/words.txt | cut -d ' ' -f 2`
 nj=1
 
 echo "PHI: $phi"
