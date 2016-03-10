@@ -23,7 +23,6 @@ threads=${4:-8}
 lm=${5:-3g}
 graph=${6:-graph}
 model=${7:-model}
-models=$8
 
 # Move to the dir containing this file
 # Kaldi scripts are often expecting the path 

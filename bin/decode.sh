@@ -13,7 +13,6 @@ threads=${3:-8}
 lm=${4:-3g}
 graph=${5:-graph}
 model=${6:-model}
-models=${7:-$KALDI_MODELS}
 
 ivector=200
 nj=1
@@ -38,12 +37,12 @@ if [ $taille == 0 ]; then
 fi
 
 
-phi=`grep '#0' $models/$graph/words.txt | cut -d ' ' -f 2`
+phi=`grep '#0' $graph/words.txt | cut -d ' ' -f 2`
 nj=1
 
 echo "PHI: $phi"
 
-./bin/decode_innetQuad.sh --nnet $models/$model/final.nnet --srcdir $models/$model/ --phi $phi --rescore $models/$lm --num_threads $threads --use_gpu $gpu  --skip_scoring true --nj $nj --cmd "$decode_cmd" --cmd2 "$rescore_cmd"  $models/$graph/ ${name} ${name}/results || exit 1
+./bin/decode_innetQuad.sh --nnet $model/final.nnet --srcdir $model/ --phi $phi --rescore $lm --num_threads $threads --use_gpu $gpu  --skip_scoring true --nj $nj --cmd "$decode_cmd" --cmd2 "$rescore_cmd"  $graph/ ${name} ${name}/results || exit 1
 date
 duration=$SECONDS
 echo "Computed in $(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
