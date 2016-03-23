@@ -125,7 +125,7 @@ if [ $stage -le 0 ]; then
     latgen-faster-mapped$thread_string --max-active=$max_active --max-mem=$max_mem --beam=$beam \
     --lattice-beam=$latbeam --map --acoustic-scale=$acwt --allow-partial=true --word-symbol-table=$graphdir/words.txt --determinize-lattice=false \
     $model $graphdir/HCLG.fst.map  ark:- ark:-   \| \
-	lattice-rescore-ngram-parallel --sequence=false --res-beam=1.7990894680536321e+01 --res-prebeam=9.6952974701867127e+00 --res-lattice-beam=1.0705767638403191e+01 --num-threads=$num_threads  --res-wip=0.545441457072237 --res-filProb=0.0014731059878509 --res-silProb=0.393561576959076 --res-fudge=1.6842438228765488e+01 --res-phi=$phi $model  ark:-  $rescore/G.fst.phi.sort ark:- \| \
+	lattice-rescore-ngram-parallel --sequence=false --res-beam=1.7990894680536321e+01 --res-prebeam=9.6952974701867127e+00 --res-lattice-beam=1.0705767638403191e+01 --num-threads=$num_threads  --res-wip=0.545441457072237 --res-filProb=0.0014731059878509 --res-silProb=0.393561576959076 --res-fudge=1.6842438228765488e+01 --res-phi=$phi $model  ark:-  $rescore/G.fst.sort.map ark:- \| \
  lattice-align-words $graphdir/phones/word_boundary.int $model ark:- ark:- \| lattice-to-ctm-conf  --flush=true  --decode-mbr=true --acoustic-scale=0.07 ark:- - \| \
     utils/int2sym.pl -f 5 $graphdir/words.txt \| bin/convertTer_ctm.pl $sdata/JOB/segments  \>$dirLat/resul.JOB.ctm  || exit 1
 
