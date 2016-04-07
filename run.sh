@@ -68,8 +68,8 @@ then
     encoding=`file -bi $wdir/decode/results/resul.1.ctm`
     if [[ $encoding == *"8859"* ]]
     then
-        sort -n -k3 resul.1.ctm | iconv -f iso-8859-1 -t utf8 > $wdir/$show.ctm
+        sort -n -k3 $wdir/decode/results/resul.1.ctm | iconv -f iso-8859-1 -t utf8 > $wdir/$show.ctm
     else
-        sort -n -k3 resul.1.ctm > $wdir/$show.ctm
+        sort -n -k3 $wdir/decode/results/resul.1.ctm > $wdir/$show.ctm
     fi
 fi
