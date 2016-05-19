@@ -48,7 +48,17 @@ else
   conv_bin=ffmpeg
 fi
 
+if [ ! -f $audio ]; then
+    echo "File $audio not found!"
+    exit -1
+fi
+
 $conv_bin -i $audio -y -vn -acodec pcm_s16le -ac 1 $wdir/audio/$show.wav
+
+if [ ! -f $wdir/audio/$show.wav ]; then
+    echo "File $wdir/audio/$show.wav not found!"
+    exit -1
+fi
 sox $wdir/audio/$show.wav -r 16000 $wdir/audio/$show.sph
 
 # Diarization (segmentation/classification)
