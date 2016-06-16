@@ -23,6 +23,7 @@ threads=${4:-8}
 lm=${5:-3g}
 graph=${6:-graph}
 model=${7:-model}
+diarization=${7:-diarization.sh}
 
 # Move to the dir containing this file
 # Kaldi scripts are often expecting the path 
@@ -62,7 +63,7 @@ fi
 sox $wdir/audio/$show.wav -r 16000 $wdir/audio/$show.sph
 
 # Diarization (segmentation/classification)
-./diarization/diarization.sh $wdir/audio/$show.wav $wdir/seg ./diarization/dist/LIUM_SpkDiarization-9.0.jar ./diarization/dist/phase1_asr ./diarization/dist/phase2_i-vector audio16kHz2sphinx
+./diarization/$diarization $wdir/audio/$show.wav $wdir/seg ./diarization/dist/LIUM_SpkDiarization-9.0.jar ./diarization/dist/phase1_asr ./diarization/dist/phase2_i-vector audio16kHz2sphinx
 
 # Prepare files for the decode procss
 cat $wdir/seg/$show.g.seg | ./bin/51meignier2ctm.perl | ./bin/03kaldi.perl $wdir/decode $wdir/audio/$show.sph $KALDI_ROOT/tools/sph2pipe_v2.5/sph2pipe 16000
