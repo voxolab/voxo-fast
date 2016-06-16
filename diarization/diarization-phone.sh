@@ -52,7 +52,7 @@ fDescIV="sphinx,1:3:2:0:0:0,13,1:1:0:0"
 
 thr_l=2
 thr_h=3
-thr_iv=100
+thr_iv=50
 
 #calcul les MFCC (wave --> mfcc)
 $prog fr.lium.spkDiarization.tools.Wave2FeatureSet $opt --fInputMask=$audio --fInputDesc=$fDescStart --fOutputMask=$features --fOutputDesc=$fDesc --sInputMask="" --sOutputMask=$wdir/%s.i.seg $show >>$logfile 2>&1
