@@ -24,7 +24,7 @@ nji=1
 steps/make_mfcc.sh --mfcc-config conf/mffcIvector8k.conf --nj ${nji} --cmd \"$train_cmd\" ${name} ${name}/log $mfccdir || exit 1
 
 mv ${name}/feats.scp ${name}/feati.scp
-steps/make_fbank.sh --fbank-config conf/fbank8k.conf --nj ${nj} --cmd "$train_cmd"  $nom   $nom/log   $nom/bankDir || exit 1;
+steps/make_fbank.sh --fbank-config conf/fbank8k.conf --nj ${nj} --cmd "$train_cmd"  $name   $name/log   $name/bankDir || exit 1;
 
 steps/compute_cmvn_stats.sh   $name   $name/log   $name/bankDir
 ##### bug sur cmvn le fichier pour ivector et feat est le meme
