@@ -99,9 +99,17 @@ forward_thread_string=""
 # Create the feature stream:
 feats="ark,s,cs:copy-feats scp:$sdata/JOB/feats.scp ark:- |"
 
-# Add cmvn
-[ ! -f $sdata/1/cmvn.scp ] && echo "$0: cannot find cmvn stats $sdata/1/cmvn.scp" && exit 1
-feats="$feats apply-cmvn-sliding —norm-vars=false —center=false —cmn-window=300 ark:- ark:- |"
+# Optionally add cmvn
+if [ -f $srcdir/norm_vars ]; then
+  norm_vars=$(cat $srcdir/norm_vars 2>/dev/null)
+  [ ! -f $sdata/1/cmvn.scp ] && echo "$0: cannot find cmvn stats $sdata/1/cmvn.scp" && exit 1
+  feats="$feats apply-cmvn --norm-vars=$norm_vars --utt2spk=ark:$sdata/JOB/utt2spk scp:$sdata/JOB/cmvn.scp ark:- ark:- |"
+fi
+
+# Add sliding cmn
+if [ -f $srcdir/cmnOnline ]; then
+  feats="$feats  apply-cmvn-sliding --norm-vars=false --center=false --cmn-window=300 ark:- ark:- |"
+fi
 
 # Optionally add deltas
 if [ -f $srcdir/delta_order ]; then
