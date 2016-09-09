@@ -8,8 +8,6 @@ mkdir $datadir
 
 LOCALCLASSPATH=./bin/LIUM_SpkDiarization-9.0.jar
 
-
-features=./$datadir/%s.mfcc
 fDescD="audio8kHz2sphinx,1:3:2:0:0:0,13,1:1:300:2"
 
 # linear clustering
