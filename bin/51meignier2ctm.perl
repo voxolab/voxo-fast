@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 use strict;
-my $text="S F0 T F2";
+my $text="S F0 T F2 U U";
 my %dico= split(" ",$text);
 
 while (<>) {
@@ -12,6 +12,6 @@ while (<>) {
     $locu=$res[7];
     $debut = sprintf "%.2f",$res[2]/100;
     $fin = sprintf "%.2f", ($res[3]+$res[2])/100;
-   $type = $dico{$res[5]};
+    $type = $dico{$res[5]};
 print join(" ",@res[0..1],$debut,$fin,join("_",$type,join("-",$res[4],$locu))),"\n";
 }
