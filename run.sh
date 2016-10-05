@@ -54,7 +54,7 @@ if [ ! -f $audio ]; then
     exit -1
 fi
 
-$conv_bin -i $audio -y -vn -acodec pcm_s16le -ac 1 $wdir/audio/$show.wav
+$conv_bin -i $audio -y -vn -ar 16000 -acodec pcm_s16le -ac 1 $wdir/audio/$show.wav
 
 if [ ! -f $wdir/audio/$show.wav ]; then
     echo "File $wdir/audio/$show.wav not found!"
