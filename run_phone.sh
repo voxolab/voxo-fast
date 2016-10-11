@@ -66,7 +66,7 @@ if [ ! -f $wdir/audio/$show.wav ]; then
 fi
 sox $wdir/audio/$show.wav -r 8000 $wdir/audio/$show.sph
 
-if [[ $string == *"vad"* ]]
+if [[ $diarization == *"vad"* ]]
 then
     # Diarization (segmentation/classification)
     $diarization $wdir/audio/$show.wav > $wdir/seg/$show.g.seg
@@ -79,7 +79,6 @@ fi
 # Prepare files for the decode procss
 cat $wdir/seg/$show.g.seg | ./bin/51meignier2ctm.perl | ./bin/03kaldi.perl $wdir/decode $wdir/audio/$show.sph $KALDI_ROOT/tools/sph2pipe_v2.5/sph2pipe 8000
 
-exit
 # Start decoding
 ./bin/$decode_script $wdir/decode $gpu $threads $lm $graph $model $models
 
