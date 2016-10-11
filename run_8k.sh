@@ -63,12 +63,11 @@ if [ ! -f $wdir/audio/$show.wav ]; then
     echo "File $wdir/audio/$show.wav not found!"
     exit -1
 fi
-sox $wdir/audio/$show.wav -r 8000 $wdir/audio/$show.sph
 
 # Diarization (segmentation/classification)
 ./diarization/$diarization $wdir/audio/$show.wav $wdir/seg ./diarization/dist/LIUM_SpkDiarization-9.0.jar ./diarization/dist/phase1_asr ./diarization/dist/phase2_i-vector audio8kHz2sphinx
 # Prepare files for the decode procss
-cat $wdir/seg/$show.g.seg | ./bin/51meignier2ctm.perl | ./bin/03kaldi.perl $wdir/decode $wdir/audio/$show.sph $KALDI_ROOT/tools/sph2pipe_v2.5/sph2pipe 8000
+cat $wdir/seg/$show.g.seg | ./bin/51meignier2ctm.perl | ./bin/03kaldi.perl $wdir/decode $wdir/audio/$show.wav 8000
 
 # Start decoding
 ./bin/decode_phone.sh $wdir/decode $gpu $threads $lm $graph $model $models
