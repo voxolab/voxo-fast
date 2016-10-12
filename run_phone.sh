@@ -25,6 +25,7 @@ graph=${6:-graph}
 model=${7:-model}
 diarization=${8:-diarization.sh}
 decode_script=${9:-decode_phone.sh}
+ali=${10:-ali}
 
 # Move to the dir containing this file
 # Kaldi scripts are often expecting the path 
@@ -80,7 +81,7 @@ fi
 cat $wdir/seg/$show.g.seg | ./bin/51meignier2ctm.perl | ./bin/03kaldi.perl $wdir/decode $wdir/audio/$show.wav 8000
 
 # Start decoding
-./bin/$decode_script $wdir/decode $gpu $threads $lm $graph $model $models
+./bin/$decode_script $wdir/decode $gpu $threads $lm $graph $model $models $ali
 
 # If the ctm has been produced (everything is ok)
 # sort it and convert it to utf-8

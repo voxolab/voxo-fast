@@ -80,7 +80,7 @@ if [ -z "$nnet" ]; then nnet=$srcdir/final.nnet; fi
 if [ -z "$model" ]; then model=$srcdir/final.mdl; fi
 if [ -z "$feature_transform" ]; then feature_transform=$srcdir/final.feature_transform; fi
 if [ -z "$class_frame_counts" ]; then class_frame_counts=$srcdir/ali_train_pdf.counts; fi
-if [ -z "$trans" ]; then trans=$srcdir/final.mat; echo "trans :$trans"; fi
+#if [ -z "$trans" ]; then trans=$srcdir/final.mat; echo "trans :$trans"; fi
 #splice_opts=`cat $srcdir/splice_opts 2>/dev/null` # frame-splicing options.
 # Check that files exist
 for f in $sdata/1/feats.scp $nnet $model $feature_transform $class_frame_counts $graphdir/HCLG.fst.map; do
@@ -116,10 +116,11 @@ if [ -f $srcdir/delta_order ]; then
   delta_order=$(cat $srcdir/delta_order)
   feats="$feats add-deltas --delta-order=$delta_order ark:- ark:- |"
 fi
-if [ -f $trans ]; then
-feats="$feats splice-feats $splice_opts ark:- ark:- | transform-feats $srcdir/final.mat ark:- ark:- |"
 
-fi
+#if [ -f $trans ]; then
+#feats="$feats splice-feats $splice_opts ark:- ark:- | transform-feats $srcdir/final.mat ark:- ark:- |"
+#
+#fi
 
 ici=`pwd`
 [ !  -d $dirLat ] && mkdir -p $dirLat

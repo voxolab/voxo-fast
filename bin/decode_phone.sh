@@ -13,6 +13,7 @@ threads=${3:-8}
 lm=${4:-3g}
 graph=${5:-graph}
 model=${6:-model}
+ali=${7:-ali}
 
 ivector=200
 nj=1
@@ -28,6 +29,10 @@ steps/make_fbank.sh --fbank-config conf/fbank8k.conf --nj ${nj} --cmd "$train_cm
 
 steps/compute_cmvn_stats.sh   $name   $name/log   $name/bankDir
 ##### bug sur cmvn le fichier pour ivector et feat est le meme
+
+steps/align_fmllr.sh --nj ${nji} --cmd \"$train_cmd\" ${name} ${graph} ${ali} $plpdir
+steps/nnet/make_fmllr_feats.sh --nj ${nji} --cmd \"$train_cmd\" --transform-dir $plpdir ${name}/fmllr $name $ali ${name}/log $plpdir
+cp ${name}/fmllr/feats.scp ${name}/feats.scp
 
 date 
 
